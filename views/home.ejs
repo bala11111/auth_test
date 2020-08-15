@@ -7,11 +7,11 @@
     <body>
 
         <% if(locals.user) {%>
-
+            
             <a href="/users/profile"><%= user.name %></a>
             
             <%}else{%>
-                
+                <!-- My home page-->
                 <div id="home_container">
                     <p>Hey What do you wanna do?</p>
                     <button><a href="/users/sign-in">Sign In</a></button>

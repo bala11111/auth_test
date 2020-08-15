@@ -1,6 +1,7 @@
 const User = require('../models/user');
 const bcript = require('bcrypt');
 
+// the profile page
 module.exports.profile = function(req, res){
     return res.render('user_profile', {
         title: 'User Profile',
@@ -16,7 +17,7 @@ module.exports.signUp = function(req, res){
 
 
     return res.render('sign_up', {
-        title: "Codeial | Sign Up"
+        title: "AuthTest Sign Up"
     })
 }
 
@@ -29,7 +30,7 @@ module.exports.signIn = function(req, res){
         return res.redirect('/users/profile');
     }
     return res.render('sign_in', {
-        title: "Codeial | Sign In"
+        title: "AuthTest Sign In"
     });
 }
 
@@ -56,20 +57,21 @@ module.exports.create = function(req, res){
                     console.log(hash);
                 }
             });
-            console.log(myString);
+            req.flash('success', 'You have signed up, login to continue!');
             User.create(req.body, function(err, user){
                 if(err){req.flash('error', err); return}
 
                 return res.redirect('/users/sign-in');
-            })
+            });
         }else{
-            req.flash('success', 'You have signed up, login to continue!');
+            req.flash('error', 'Cant Sign up!');
             return res.redirect('back');
         }
 
     });
 }
 
+// To reset the password
 module.exports.reset = function(req, res){
     if(req.body.o_password!= req.user.password)
     {
@@ -98,18 +100,11 @@ module.exports.reset = function(req, res){
 
 // sign in and create a session for the user
 module.exports.createSession = function(req, res){
-    /*var stringkey = 'g-recaptcha-response';
-    console.log(req.body[stringkey].length);
-    if(req.body[stringkey].length==0)
-    {
-        req.logout();
-        req.flash('error','Invalid Captcha');
-        return res.redirect('/users/sign-in');
-    }*/
     req.flash('success', 'Logged in Successfully');
     return res.redirect('/users/profile');
 }
 
+//  to logout
 module.exports.destroySession = function(req, res){
     req.logout();
     req.flash('success', 'You have logged out!');

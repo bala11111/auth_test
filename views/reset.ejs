@@ -6,7 +6,7 @@
   <body>
      
     <% if(locals.user) {%>
-        
+        <!-- for reseting the password -->
         <form action="/users/reset-password/<%= profile_user._id %>" method="POST">
            
         <input type="password" name="password" placeholder="enter new password">

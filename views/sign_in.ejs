@@ -1,9 +1,11 @@
-<head><script src="https://www.google.com/recaptcha/api.js" async defer></script>
+<head>
+    <title>Sign in</title>
+    <script src="https://www.google.com/recaptcha/api.js" async defer></script>
     <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.5.0/css/all.css" integrity="sha384-B4dIYHKNBt8Bc12p+WXckhzcICo0wtJAoU8YZTY5qE0Id1GSseTk6S+L3BlXeVIU" crossorigin="anonymous">
 </head>
 <div id="sign_in">
     <h1>Sign In</h1>
-
+        <!-- Sign in Form -->
         <form action="/users/create-session" method="POST" id="formdata">
             <input type="email" name="email" placeholder="Email"  required>
             <input type="password" name="password" placeholder="Password"  required>

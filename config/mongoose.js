@@ -1,5 +1,6 @@
 const mongoose = require('mongoose');
 
+// creating and establishing connection to database
 mongoose.connect('mongodb://localhost/auth_development');
 
 const db = mongoose.connection;
