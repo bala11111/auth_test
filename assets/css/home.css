@@ -1,0 +1,33 @@
+body {
+  display: flex;
+  justify-content: center;
+  align-items: center; }
+  body #home_container {
+    height: auto;
+    width: auto;
+    background-color: #006d80;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin-top: -70px;
+    padding: 15px;
+    border: 5px solid #110909; }
+    body #home_container p {
+      font-weight: 800;
+      font-size: 30px; }
+    body #home_container button {
+      width: 200px;
+      height: 40px;
+      margin-top: 10px; }
+      body #home_container button a {
+        text-decoration: none;
+        font-size: 20px;
+        padding-right: 55px;
+        padding-left: 55px;
+        padding-top: 5px;
+        padding-bottom: 5px; }
+    body #home_container button:hover {
+      transform: scale(1.1);
+      transition: 0.5s;
+      background-color: lawngreen;
+      cursor: pointer; }

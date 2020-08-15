@@ -1,0 +1,22 @@
+<html>
+     
+     <head><title>Home</title>
+        <link rel="stylesheet" href="/css/home.css">
+    </head>
+  
+    <body>
+
+        <% if(locals.user) {%>
+
+            <a href="/users/profile"><%= user.name %></a>
+            
+            <%}else{%>
+                
+                <div id="home_container">
+                    <p>Hey What do you wanna do?</p>
+                    <button><a href="/users/sign-in">Sign In</a></button>
+                    <button><a href="/users/sign-up">Sign Up</a></button>
+                </div>
+                <%}%>
+    </body>
+</html>

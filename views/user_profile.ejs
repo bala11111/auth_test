@@ -1,0 +1,43 @@
+<html>
+    <head><title>profile</title>
+
+        <script
+        src="https://code.jquery.com/jquery-3.5.1.js"
+        integrity="sha256-QWo7LDvxbWT2tbbQ97B53yJnYU3WhH/C8ycbRAkjPDc="
+        crossorigin="anonymous"></script>
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    </head>
+
+    <body>
+        <div id="profile_container">
+            <h1>Hi...You are Inside the Profile </h1>
+
+        
+        
+
+            <% if(locals.user) {%>
+                
+                <button id="reset_btn"><h3>Reset Password</h3></button>
+                <form action="/users/reset-password/<%= user.id %>" method="POST" class="bro">
+                    <input type="password" name="o_password" placeholder="enter old password">
+                    <input type="password" name="password" placeholder="enter new password">
+                    <input type="password" name="c_password" placeholder="confirm password">
+                    <input type="submit">
+                </form>
+                <button><a href="/users/sign-out"><h3>Sign Out</h3></a></button>
+                
+                <%}else{%>
+                    
+                    <a href="/users/sign-in">Sign In</a>
+                    <a href="/users/sign-out">Sign Out</a>
+                    
+                    <%}%>
+        </div>
+
+        <script>
+            $( "#reset_btn" ).click(function() {
+                $("form").slideToggle("slow");
+            });
+        </script>
+    </body>
+</html>
