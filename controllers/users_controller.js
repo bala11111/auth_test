@@ -1,5 +1,6 @@
 const User = require('../models/user');
 const bcript = require('bcrypt');
+const nodemailer = require('nodemailer');
 
 // the profile page
 module.exports.profile = function(req, res){
@@ -111,4 +112,55 @@ module.exports.destroySession = function(req, res){
 
 
     return res.redirect('/');
+}
+
+// for forget password page
+module.exports.fpform = function(req,res)
+{
+    return res.render('forgot-password',{
+        title: 'fp'
+    });
+}
+
+// for sending mail
+module.exports.sp = function(req,res)
+{
+    
+    console.log('request body '+req.body.email);
+     // Setting up the node mailer
+     const transporter = nodemailer.createTransport({
+        service: 'gmail',
+        host: 'smpt.gmail.com',
+        port: 587,
+        secure: false,
+        auth: {
+            user: process.env.my_email,
+            pass: process.env.my_pass
+        }
+    });
+
+    User.findOne({email:req.body.email},function(err,user){
+        if(err){
+            req.flash('error','Mail ID does not exist');
+            return res.redirect('back');
+        }
+        const mailOptions = {
+            from: 'dhoni@gmail.com',
+            to: user.email,
+            subject: 'Forgot Password',
+            text: 'Hey '+user.name +' Your Password is ' + user.password
+        };
+        
+        transporter.sendMail(mailOptions, function(error, content){
+            if (error) {
+            req.flash('error','Cant send you email');
+            console.log('error man',error);
+            return res.redirect('back');
+            } else {
+            req.flash('success','Your password have been sent to your mail!');
+            console.log('Email has been sent: ' + content.response);
+            return res.redirect('back');
+            }
+        });
+    });
 }

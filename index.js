@@ -10,11 +10,14 @@ const session = require('express-session');
 const passport = require('passport');
 const passportLocal = require('./config/pass-local-strategy');
 const MongoStore = require('connect-mongo')(session);
-const sassMiddleware =require('node-sass-middleware');
+const sassMiddleware = require('node-sass-middleware');
 const flash = require('connect-flash');
 const customMware = require('./config/middleware');
 const passportGoogle = require('./config/passport-google-oauth2-strategy');
 const fetch = require('node-fetch');
+const nodemailer = require('nodemailer');
+require('dotenv').config();
+
 
 app.use(expressLayouts);
 
@@ -71,6 +74,8 @@ app.use(customMware.setFlash);
 
 // use express router
 app.use('/', require('./routes'));
+
+
 
 // To start our app
 app.listen(port, function(err){

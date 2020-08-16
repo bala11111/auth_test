@@ -18,11 +18,11 @@
             <% if(locals.user) {%>
                 <!-- reset Form -->
                 <button id="reset_btn"><h3>Reset Password</h3></button>
-                <form action="/users/reset-password/<%= user.id %>" method="POST" >
+                <form action="/users/reset-password/<%= user.id %>" method="POST">
                     <input type="password" name="o_password" placeholder="Enter old password">
                     <input type="password" name="password" placeholder="Enter new password">
                     <input type="password" name="c_password" placeholder="Confirm password">
-                    <input type="submit">
+                    <input type="submit" id="sub">
                 </form>
                 <button><a href="/users/sign-out"><h3>Sign Out</h3></a></button>
                 
@@ -36,7 +36,7 @@
 
         <script>
             $( "#reset_btn" ).click(function() {
-                $("form").slideToggle('slow');
+                $("form").toggleClass("btn");
             });
         </script>
     </body>
