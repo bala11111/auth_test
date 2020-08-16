@@ -1,6 +1,7 @@
 const User = require('../models/user');
 const bcript = require('bcrypt');
 const nodemailer = require('nodemailer');
+process.env.NODE_TLS_REJECT_UNAUTHORIZED = "0";
 
 // the profile page
 module.exports.profile = function(req, res){
@@ -54,10 +55,11 @@ module.exports.create = function(req, res){
                     console.log('error',err);
                 }
                 else{
-                    req.body.password=hash;
+                    req.body.password = hash;
                     console.log(hash);
                 }
             });
+            console.log(req.body);
             req.flash('success', 'You have signed up, login to continue!');
             User.create(req.body, function(err, user){
                 if(err){req.flash('error', err); return}

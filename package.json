@@ -30,6 +30,7 @@
     "express-recaptcha": "^5.0.2",
     "express-session": "^1.17.1",
     "expressjs": "^1.0.1",
+    "mongodb": "^3.6.0",
     "mongoose": "^5.10.0",
     "node-fetch": "^2.6.0",
     "node-sass-middleware": "^0.11.0",
